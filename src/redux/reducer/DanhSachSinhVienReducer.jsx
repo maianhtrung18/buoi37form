@@ -1,44 +1,79 @@
-import { SHOW_ERROR, THEM_SV } from "../../types/sinhVienType"
+import { CAPNHAT_SV, SHOW_ERROR, SUA_SV, THEM_SV, XEM_SV, XOA_SV } from "../../types/sinhVienType"
 
 const initialState = {
     danhSachSV: [
         {
             maSV: '001',
-            hoTen: "Sinh Vien 0",
-            sdt: '0987777755',
-            email: 'wer1@hh.lo'
+            hoTen: "Sinh Vien 1",
+            sdt: '0987777711',
+            email: 'wer1@hh.lo1'
         },
         {
             maSV: '002',
-            hoTen: "Sinh Vien 3",
-            sdt: '0987777733',
-            email: 'wer2@hh.lo'
+            hoTen: "Sinh Vien 2",
+            sdt: '0987777722',
+            email: 'wer2@hh.lo2'
         }
     ],
+    chiTietSV: {
+        maSV: '',
+        hoTen: '',
+        sdt: '',
+        email: ''
+    },
     error: {
         maSV: '',
         hoTen: '',
         sdt: '',
         email: ''
-    }
+    },
+    xemState: false
 }
 
 export const DanhSachSinhVienReducer = (state = initialState, action) => {
     switch (action.type) {
         case THEM_SV:
-            console.log("action chi tiet",action.chiTiet)
-            console.log("state danh sach sv",...state.danhSachSV)
-            state.danhSachSV = [...state.danhSachSV, {...action.chiTiet}];
-            state.error = {...action.error}
-            
-            console.log("000", state.danhSachSV )
+            state.danhSachSV = [...state.danhSachSV, { ...action.chiTiet }];
+            state.error = { ...action.error }
             return { ...state }
         case SHOW_ERROR:
-            console.log("0001", state)
-            state.error = {...action.error}
-            return {...state}
+            state.error = { ...action.error }
+            return { ...state }
+        case XOA_SV:
+            state.danhSachSV = state.danhSachSV.filter((sv) => {
+                return sv.maSV !== action.maSV
+            })
+            return { ...state }
+        case XEM_SV:
+            state.chiTietSV = action.sv
+            state.xemState = action.xemState
+            return { ...state }
+        case SUA_SV:
+            state.chiTietSV = action.chiTiet
+            return { ...state }
+
+        case CAPNHAT_SV:
+            let svCapNhat = state.danhSachSV.findIndex((sv) => {
+                return sv.maSV === action.sv.maSV
+            })
+            state.danhSachSV[svCapNhat] = {...action.sv}
+            state.danhSachSV = [...state.danhSachSV]
+            state.xemState = action.xemState
+
+            // let svCapNhat = state.danhSachSV.find((sv) => {
+            //     return sv.maSV === action.sv.maSV
+            // })
+            // // svCapNhat = { ...action.sv }
+            // if(svCapNhat){
+            //     svCapNhat = action.sv
+            //     // console.log("cap nhat",svCapNhat)
+            // }
+            
+            // state.danhSachSV = [...state.danhSachSV]
+            // state.xemState = action.xemState
+            // console.log("danh sach",state.danhSachSV)
+            return { ...state }
         default:
-            // state.danhSachSV =  [...state.danhSachSV]
             return { ...state }
     }
 }
