@@ -54,7 +54,6 @@ export class ThongTinSinhVien extends Component {
                         break;
                 }
                 this.error[property] = `${idField} không được để trống`
-
             } else {
                 this.error[property] = ``
             }
@@ -100,19 +99,14 @@ export class ThongTinSinhVien extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log(this.props.chiTietSV)
-        console.log(nextProps.chiTietSV)
-        if(this.props.chiTietSV !== nextProps.chiTietSV || this.props.error !== nextProps.error){
-            console.log(true)
+        if(this.props.chiTietSV !== nextProps.chiTietSV || this.props.error !== nextProps.error || this.props.xemState !== nextProps.xemState){
             return true
         }
         else{
             return false
         }
     }
-
    
-
     render() {
         let { maSV, hoTen, sdt, email } = this.props.chiTietSV
         return (
@@ -153,14 +147,13 @@ export class ThongTinSinhVien extends Component {
                                         isError = true;
                                     }
                                 }
-                                console.log(isError)
                                 if (isError) {
                                     this.props.dispatch({
                                         type: SHOW_ERROR,
                                         error: this.error
                                     })
 
-                                } else {
+                                } else {      
                                     this.props.dispatch({
                                         type: CAPNHAT_SV,
                                         sv: this.props.chiTietSV,

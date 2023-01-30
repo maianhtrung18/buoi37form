@@ -13,6 +13,12 @@ const initialState = {
             hoTen: "Sinh Vien 2",
             sdt: '0987777722',
             email: 'wer2@hh.lo2'
+        },
+        {
+            maSV: '003',
+            hoTen: "Sinh Vien 3",
+            sdt: '0987777733',
+            email: 'wer2@hh.lo3'
         }
     ],
     chiTietSV: {
@@ -45,7 +51,7 @@ export const DanhSachSinhVienReducer = (state = initialState, action) => {
             })
             return { ...state }
         case XEM_SV:
-            state.chiTietSV = action.sv
+            state.chiTietSV = {...action.sv}
             state.xemState = action.xemState
             state.error = {...action.error}
             return { ...state }
