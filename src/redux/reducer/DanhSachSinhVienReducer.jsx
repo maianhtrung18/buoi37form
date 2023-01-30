@@ -47,11 +47,11 @@ export const DanhSachSinhVienReducer = (state = initialState, action) => {
         case XEM_SV:
             state.chiTietSV = action.sv
             state.xemState = action.xemState
+            state.error = {...action.error}
             return { ...state }
         case SUA_SV:
             state.chiTietSV = {...action.chiTiet}
             return { ...state }
-
         case CAPNHAT_SV:
             let svCapNhat = state.danhSachSV.findIndex((sv) => {
                 return sv.maSV === action.sv.maSV

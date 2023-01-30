@@ -50,7 +50,13 @@ export class DanhSachSinhVien extends Component {
                                 sdt: sv.sdt,
                                 email: sv.email
                             },
-                            xemState: true
+                            xemState: true,
+                            error: {
+                                maSV: '',
+                                hoTen: '',
+                                sdt: '',
+                                email: ''
+                            }
                         })
                     }} className='btn btn-success'>Xem</button>
                 </td>
