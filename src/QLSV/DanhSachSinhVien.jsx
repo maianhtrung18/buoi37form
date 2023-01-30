@@ -3,9 +3,27 @@ import { connect } from 'react-redux'
 import { XEM_SV, XOA_SV } from '../types/sinhVienType'
 export class DanhSachSinhVien extends Component {
 
+    state = {
+        danhSachSV: this.props.danhSachSV,
+        returnState: false
+    }
+
+    // returnStateNha = true;
+
+    static getDerivedStateFromProps(props, state) {
+        if (state.returnState) {
+            return { ...state }
+        }
+        else {
+            return props
+        }
+
+    }
+
+
     renderDSSV = () => {
         // console.log("renderDSSV",this.props.danhSachSV)
-        return this.props.danhSachSV.map((sv) => {
+        return this.state.danhSachSV.map((sv) => {
             return <tr key={sv.maSV}>
                 <td>{sv.maSV}</td>
                 <td>{sv.hoTen}</td>
@@ -17,6 +35,7 @@ export class DanhSachSinhVien extends Component {
                             type: XOA_SV,
                             maSV: sv.maSV
                         })
+                        // this.setState(this.props.danhSachSV)
                     }} className='btn btn-danger'>Xoá</button>
                     <button onClick={() => {
                         this.props.dispatch({
@@ -38,6 +57,27 @@ export class DanhSachSinhVien extends Component {
     render() {
         return (
             <div className="danhSachSinhVien">
+
+                <form className="form-inline my-2 my-lg-0">
+                    <input onChange={(event) => {
+                        if (event.target.value !== '') {
+                            let danhSach = this.props.danhSachSV.filter((sv) => {
+                                return sv.hoTen.toLowerCase().includes(event.target.value.toLowerCase().trim())
+                            })
+                            this.setState({
+                                danhSachSV: [...danhSach],
+                                returnState: true
+                            })
+                        } else {
+                            this.setState({
+                                danhSachSV: [],
+                                returnState: false
+                            })
+                        }
+                    }} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+                </form>
+
                 <table className="table">
                     <thead>
                         <tr>
