@@ -17,14 +17,14 @@ export class DanhSachSinhVien extends Component {
         }
     }
 
-     shouldComponentUpdate(nextProps, nextState) {
-        if(this.props.danhSachSV === nextProps.danhSachSV){
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.danhSachSV === nextProps.danhSachSV) {
             return false
         }
         else {
             return true;
         }
-        
+
     }
 
     renderDSSV = () => {
@@ -61,7 +61,6 @@ export class DanhSachSinhVien extends Component {
     render() {
         return (
             <div className="danhSachSinhVien">
-
                 <form className="form-inline my-2 my-lg-0">
                     <input onChange={(event) => {
                         if (event.target.value !== '') {
