@@ -59,19 +59,6 @@ export const DanhSachSinhVienReducer = (state = initialState, action) => {
             state.danhSachSV[svCapNhat] = {...action.sv}
             state.danhSachSV = [...state.danhSachSV]
             state.xemState = action.xemState
-
-            // let svCapNhat = state.danhSachSV.find((sv) => {
-            //     return sv.maSV === action.sv.maSV
-            // })
-            // // svCapNhat = { ...action.sv }
-            // if(svCapNhat){
-            //     svCapNhat = action.sv
-            //     // console.log("cap nhat",svCapNhat)
-            // }
-            
-            // state.danhSachSV = [...state.danhSachSV]
-            // state.xemState = action.xemState
-            // console.log("danh sach",state.danhSachSV)
             return { ...state }
         default:
             return { ...state }

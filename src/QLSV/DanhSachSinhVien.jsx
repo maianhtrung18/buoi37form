@@ -15,14 +15,9 @@ export class DanhSachSinhVien extends Component {
         else {
             return props
         }
-
     }
 
      shouldComponentUpdate(nextProps, nextState) {
-        // console.log("next props",nextProps)
-        // console.log("props", this.props)
-        // console.log("next state",nextState)
-        // console.log("state", this.state)
         if(this.props.danhSachSV === nextProps.danhSachSV){
             return false
         }
@@ -32,9 +27,7 @@ export class DanhSachSinhVien extends Component {
         
     }
 
-
     renderDSSV = () => {
-        // console.log("renderDSSV",this.props.danhSachSV)
         return this.state.danhSachSV.map((sv) => {
             return <tr key={sv.maSV}>
                 <td>{sv.maSV}</td>
@@ -47,7 +40,6 @@ export class DanhSachSinhVien extends Component {
                             type: XOA_SV,
                             maSV: sv.maSV
                         })
-                        // this.setState(this.props.danhSachSV)
                     }} className='btn btn-danger'>Xoá</button>
                     <button onClick={() => {
                         this.props.dispatch({
@@ -104,12 +96,9 @@ export class DanhSachSinhVien extends Component {
                         {this.renderDSSV()}
                     </tbody>
                 </table>
-
             </div>
         )
     }
-
-
 }
 
 const mapStateToProps = (rootReducer) => {

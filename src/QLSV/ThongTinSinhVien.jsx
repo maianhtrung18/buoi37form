@@ -26,7 +26,6 @@ export class ThongTinSinhVien extends Component {
             [id]: value
 
         }
-        // console.log(this.chiTietSV)
         this.props.dispatch({
             type: SUA_SV,
             chiTiet: this.chiTietSV
@@ -59,7 +58,6 @@ export class ThongTinSinhVien extends Component {
             } else {
                 this.error[property] = ``
             }
-
         }
     }
 
@@ -116,7 +114,6 @@ export class ThongTinSinhVien extends Component {
    
 
     render() {
-        // console.log("render lai",this.props)
         let { maSV, hoTen, sdt, email } = this.props.chiTietSV
         return (
             <div className="form">
