@@ -49,7 +49,7 @@ export const DanhSachSinhVienReducer = (state = initialState, action) => {
             state.xemState = action.xemState
             return { ...state }
         case SUA_SV:
-            state.chiTietSV = action.chiTiet
+            state.chiTietSV = {...action.chiTiet}
             return { ...state }
 
         case CAPNHAT_SV:

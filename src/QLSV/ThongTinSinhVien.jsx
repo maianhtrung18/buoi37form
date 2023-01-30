@@ -26,13 +26,12 @@ export class ThongTinSinhVien extends Component {
             [id]: value
 
         }
-        console.log(this.chiTietSV)
+        // console.log(this.chiTietSV)
         this.props.dispatch({
             type: SUA_SV,
             chiTiet: this.chiTietSV
         })
     }
-
 
     handleError = () => {
         for (const property in this.chiTietSV) {
@@ -102,6 +101,20 @@ export class ThongTinSinhVien extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        console.log(this.props.chiTietSV)
+        console.log(nextProps.chiTietSV)
+        if(this.props.chiTietSV !== nextProps.chiTietSV || this.props.error !== nextProps.error){
+            console.log(true)
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
+   
+
     render() {
         // console.log("render lai",this.props)
         let { maSV, hoTen, sdt, email } = this.props.chiTietSV
@@ -135,7 +148,7 @@ export class ThongTinSinhVien extends Component {
                         <div className="form-group col-6">
                             <button disabled={this.props.xemState} type="submit" className="btn btn-primary">Thêm sinh viên</button>
                             <button disabled={!this.props.xemState} onClick={() => {
-                                this.chiTietSV = {...this.props.chiTietSV}
+                                this.chiTietSV = { ...this.props.chiTietSV }
                                 this.handleError();
                                 let isError = false;
                                 for (const errorMessage in this.error) {
@@ -150,7 +163,7 @@ export class ThongTinSinhVien extends Component {
                                         error: this.error
                                     })
 
-                                }else{
+                                } else {
                                     this.props.dispatch({
                                         type: CAPNHAT_SV,
                                         sv: this.props.chiTietSV,
@@ -165,6 +178,8 @@ export class ThongTinSinhVien extends Component {
         )
     }
 }
+
+
 
 const mapStateToProps = (rootReducer) => {
     return {

@@ -8,8 +8,6 @@ export class DanhSachSinhVien extends Component {
         returnState: false
     }
 
-    // returnStateNha = true;
-
     static getDerivedStateFromProps(props, state) {
         if (state.returnState) {
             return { ...state }
@@ -18,6 +16,20 @@ export class DanhSachSinhVien extends Component {
             return props
         }
 
+    }
+
+     shouldComponentUpdate(nextProps, nextState) {
+        // console.log("next props",nextProps)
+        // console.log("props", this.props)
+        // console.log("next state",nextState)
+        // console.log("state", this.state)
+        if(this.props.danhSachSV === nextProps.danhSachSV){
+            return false
+        }
+        else {
+            return true;
+        }
+        
     }
 
 
