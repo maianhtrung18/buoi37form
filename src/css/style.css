@@ -6,3 +6,7 @@
 .form_Content {
   padding-top: 20px;
 }
+
+.notifyError {
+  color: red;
+}

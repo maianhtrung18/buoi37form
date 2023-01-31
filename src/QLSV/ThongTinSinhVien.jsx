@@ -119,22 +119,22 @@ export class ThongTinSinhVien extends Component {
                         <div className="form-group col-6">
                             <label>Mã SV</label>
                             <input disabled={this.props.xemState} id='maSV' value={maSV} onChange={this.handleChange} type="text" className="form-control" />
-                            <p>{this.props.error.maSV}</p>
+                            <p className='notifyError'>{this.props.error.maSV}</p>
                         </div>
                         <div className="form-group col-6">
                             <label>Họ Tên</label>
                             <input id='hoTen' value={hoTen} onChange={this.handleChange} type="text" className="form-control" />
-                            <p>{this.props.error.hoTen}</p>
+                            <p className='notifyError'>{this.props.error.hoTen}</p>
                         </div>
                         <div className="form-group col-6">
                             <label>Số điện thoại</label>
-                            <input id='sdt' value={sdt} onChange={this.handleChange} type="tel" pattern="[0]{1}[9]{1}[0-9]{8}" className="form-control" />
-                            <p>{this.props.error.sdt}</p>
+                            <input id='sdt' value={sdt} onChange={this.handleChange} type="tel" pattern="[0-9]{4-14}" className="form-control" />
+                            <p className='notifyError'>{this.props.error.sdt}</p>
                         </div>
                         <div className="form-group col-6">
                             <label>Email</label>
                             <input id='email' value={email} onChange={this.handleChange} type="email" className="form-control" />
-                            <p>{this.props.error.email}</p>
+                            <p className='notifyError'>{this.props.error.email}</p>
                         </div>
                         <div className="form-group col-6">
                             <button disabled={this.props.xemState} type="submit" className="btn btn-primary">Thêm sinh viên</button>
